@@ -139,3 +139,9 @@ footer {
   color: #88765c;
   border-color: #88765c;
 }
+
+.item-link:hover,
+.footer-link:hover,
+.svg-icon:hover {
+  cursor: url('/img/cursor.svg'), auto;
+}
