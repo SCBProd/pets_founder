@@ -143,5 +143,7 @@ footer {
 .item-link:hover,
 .footer-link:hover,
 .svg-icon:hover {
-  cursor: url('/img/cursor.svg'), auto;
+  cursor:
+    url('../img/cursor.svg') 16 16,
+    auto;
 }
