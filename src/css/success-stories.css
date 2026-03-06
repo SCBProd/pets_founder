@@ -1,0 +1,123 @@
+.happy-tails-section {
+    padding: 70px 0;
+}
+
+.happy-tails-title {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.2;
+    text-align: center;
+    max-width: 335px;
+    margin: 0 auto 24px;
+}
+
+.happy-tails-text {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    color: #02060a;
+    max-width: 335px;
+    margin: 0 auto 40px;
+}
+
+.swiper-wrapper-container {
+    width: 100%;
+}
+
+.swiper-slide-content {
+    font-size: 18px;
+    margin: 32px 0;
+}
+
+.swiper-slide-author {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.loader-element {
+    margin: 0 auto;
+}
+
+.swiper-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.swiper-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.arrow-icon {
+    color: var(--scheme1-text);
+}
+
+.error-message {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: var(--neutral);
+    max-width: 335px;
+    margin: 0 auto 40px;
+}
+
+@media (min-width: 768px) {
+    .swiper-wrapper-container {
+        max-width: 704px;
+    }
+
+    .happy-tails-title,
+    .happy-tails-text {
+        max-width: 704px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .swiper-wrapper-container {
+        max-width: 1312px;
+    }
+
+    .happy-tails-title {
+        max-width: 640px;
+        font-size: 48px;
+    }
+
+    .happy-tails-text {
+        max-width: 640px;
+        font-size: 18px;
+    }
+
+    .swiper-slide-content {
+        font-size: 20px;
+    }
+
+    .swiper-slide-author {
+        font-size: 16px;
+    }
+
+    .happy-tails-section {
+        padding: 80px 0;
+    }
+}
+
+.star-rating svg {
+    display: inline-block;
+    font-size: 20px;
+}
+
+.star-rating {
+    height: 20px;
+}
