@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/pets_founder/assets/favicon-CcoBaZdo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
@@ -11,7 +12,9 @@
       rel="stylesheet"
     />
   <script type="module" crossorigin src="/pets_founder/index.js"></script>
-  <link rel="stylesheet" crossorigin href="/pets_founder/assets/index-BEPPX-nk.css">
+  <link rel="modulepreload" crossorigin href="/pets_founder/assets/vendor-CF0IwSvb.js">
+  <link rel="stylesheet" crossorigin href="/pets_founder/assets/vendor-Dk3sH1nE.css">
+  <link rel="stylesheet" crossorigin href="/pets_founder/assets/index-CrGCzZ2h.css">
 </head>
 <body>
     
@@ -21,10 +24,43 @@
         
         
         
-        
+        <section class="stories-section" id="stories">
+    <div class="container">
+        <h3 class="stories-title">Щасливі історії, що надихають</h3>
+        <p class="stories-description">
+            Ці хвостики вже знайшли свій дім. Ваш майбутній друг теж чекає на вас
+        </p>
+
+        <div class="stories-loader loader"></div>
+
+        <div class="stories-swiper swiper">
+            <div class="swiper-wrapper"></div>
+
+            <div class="stories-controls visually-hidden" id="stories-controls">
+                <div class="stories-pagination swiper-pagination" id="stories-pagination"></div>
+
+                <div class="stories-buttons" id="stories-buttons">
+                    <button class="stories-prev swiper-button-prev animated-nav-button" id="stories-prev"
+                        aria-label="Попередній слайд відгуків">
+                        <svg class="arrow_forward" width="20" height="20">
+                            <use href="./img/icons.svg#icon-arrow_back"></use>
+                        </svg>
+                    </button>
+
+                    <button class="stories-next swiper-button-next animated-nav-button" id="stories-next"
+                        aria-label="Наступний слайд відгуків">
+                        <svg class="arrow_forward" width="20" height="20">
+                            <use href="./img/icons.svg#icon-arrow_forward"></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     </main>
     <footer>
-  <div class="container">
+  <div class="container footer">
     <section class="footer-logo">
       <a href="/pets_founder/src/index.html " class="logo-link">
         <svg class="svg-icon" width="299" height="98">
