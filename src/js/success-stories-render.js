@@ -1,28 +1,21 @@
 import Raty from 'raty-js';
 import 'raty-js/src/raty.css';
 
-export function renderStories(stories) {
-  const swiperWrapper = document.querySelector('.success-stories-section .swiper-wrapper');
+export function displayStories(stories) {
+    const container = document.querySelector('.happy-tails-section .swiper-wrapper');
 
-  const markup = stories
-    .map(
-      ({ description, rate, author }) =>
-        `
+    const html = stories.map(({ description, rate, author }) => `
         <div class="swiper-slide">
-          <div class="star-rating" data-score="${rate}"></div>     
-            <p class="storie-text">${description}</p>
-            <p class="storie-names">${author}</p>  
-        </div>`
-    )
-    .join('');
+            <div class="star-rating" data-score="${rate}"></div>
+            <p class="swiper-slide-content">${description}</p>
+            <p class="swiper-slide-author">${author}</p>
+        </div>
+    `).join('');
 
-  swiperWrapper.insertAdjacentHTML('beforeend', markup);
+    container.insertAdjacentHTML('beforeend', html);
 
-  document.querySelectorAll('.star-rating').forEach(rating => {
-    const raty = new Raty(rating, {
-      starType: 'svg',
-      readOnly: true,
+    container.querySelectorAll('.star-rating').forEach(el => {
+        const raty = new Raty(el, { starType: 'svg', readOnly: true });
+        raty.init();
     });
-    raty.init();
-  });
 }

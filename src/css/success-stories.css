@@ -1,19 +1,18 @@
-.stories-section {
-    padding: 64px 0;
+.happy-tails-section {
+    padding: 70px 0;
 }
 
-.stories-title {
+.happy-tails-title {
     font-family: "Open Sans", sans-serif;
     font-weight: 700;
     font-size: 36px;
     line-height: 1.2;
-    letter-spacing: -0.01em;
     text-align: center;
     max-width: 335px;
-    margin: 0 auto 24px auto;
+    margin: 0 auto 24px;
 }
 
-.stories-description {
+.happy-tails-text {
     font-family: "IBM Plex Sans", sans-serif;
     font-weight: 400;
     font-size: 16px;
@@ -21,65 +20,40 @@
     text-align: center;
     color: #02060a;
     max-width: 335px;
-    margin: 0 auto 40px auto;
+    margin: 0 auto 40px;
 }
 
-.stars-list {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 32px;
-}
-
-.star {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.stories-swiper {
+.swiper-wrapper-container {
     width: 100%;
 }
 
-.storie-text {
+.swiper-slide-content {
     font-size: 18px;
     margin: 32px 0;
 }
 
-.storie-names {
+.swiper-slide-author {
     font-weight: 600;
     font-size: 14px;
 }
 
-.stories-controls {
+.loader-element {
+    margin: 0 auto;
+}
+
+.swiper-controls {
     display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: space-between;
-    position: relative;
-    --swiper-navigation-size: 0px;
+    align-items: center;
     margin-top: 40px;
 }
 
-.stories-pagination {
-    position: relative;
-    text-align: start;
-    justify-content: flex-start;
-    left: auto;
-    top: 4px;
-    transform: none;
-    --swiper-theme-color: var(--scheme1-text);
-}
-
-.stories-buttons {
+.swiper-buttons {
     display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 10px;
 }
 
-.stories-prev,
-.stories-next {
-    position: static;
+.nav-button {
     width: 48px;
     height: 48px;
     border-radius: 8px;
@@ -90,63 +64,51 @@
     color: var(--scheme1-text);
 }
 
-.error-swiper {
+.error-message {
     font-family: "IBM Plex Sans", sans-serif;
     font-weight: 400;
     font-size: 16px;
-    line-height: 1.5;
     text-align: center;
     color: var(--neutral);
     max-width: 335px;
-    margin: 0 auto 40px auto;
+    margin: 0 auto 40px;
 }
 
-.hide {
-    display: none;
-}
-
-.stories-loader {
-    margin: 0 auto;
-}
-
-@media only screen and (min-width: 768px) {
-    .stories-swiper {
+@media (min-width: 768px) {
+    .swiper-wrapper-container {
         max-width: 704px;
     }
 
-    .stories-title {
-        max-width: 704px;
-    }
-
-    .stories-description {
+    .happy-tails-title,
+    .happy-tails-text {
         max-width: 704px;
     }
 }
 
-@media only screen and (min-width: 1440px) {
-    .stories-swiper {
+@media (min-width: 1440px) {
+    .swiper-wrapper-container {
         max-width: 1312px;
     }
 
-    .stories-title {
+    .happy-tails-title {
         max-width: 640px;
         font-size: 48px;
     }
 
-    .stories-description {
+    .happy-tails-text {
         max-width: 640px;
         font-size: 18px;
     }
 
-    .storie-text {
+    .swiper-slide-content {
         font-size: 20px;
     }
 
-    .storie-names {
+    .swiper-slide-author {
         font-size: 16px;
     }
 
-    .stories-section {
+    .happy-tails-section {
         padding: 80px 0;
     }
 }
