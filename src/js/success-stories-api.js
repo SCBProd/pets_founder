@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { showError } from './success-stories';
-const  stories = axios.create({
-baseURL: 'https://paw-hut.b.goit.study/api/',
+
+const fetchStories = axios.create({
+  baseURL: 'https://paw-hut.b.goit.study/api/',
   params: {
     page: 4,
     limit: 10,
