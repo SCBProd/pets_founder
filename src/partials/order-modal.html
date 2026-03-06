@@ -1,0 +1,60 @@
+<div class="backdrop is-open">
+  <div class="modal">
+    <button class="modal-btn" type="button">
+      <svg class="modal-btn-close" width="14" height="14">
+        <use href="/img/sprite.svg#close1"></use>
+      </svg>
+    </button>
+
+    <p class="modal-text">Залишіть заявку на знайомство</p>
+
+    <form class="modal-form">
+      <div class="modal-form-field">
+        <label class="modal-form-label" for="user-name">Ім’я*</label>
+
+        <div class="modal-input-wrapper">
+          <input
+            class="modal-form-input"
+            type="text"
+            id="user-name"
+            name="name"
+            placeholder="Андрій"
+          />
+          <span class="error-message"></span>
+        </div>
+      </div>
+
+      <div class="modal-form-field">
+        <label class="modal-form-label" for="user_phone">Телефон*</label>
+
+        <div class="modal-input-wrapper">
+          <input
+            class="modal-form-input"
+            type="tel"
+            id="user_phone"
+            name="phone"
+            placeholder="380955559922"
+          />
+          <span class="error-message"></span>
+        </div>
+      </div>
+
+      <div class="modal-form-comment">
+        <label class="modal-form-label" for="user-comment">Коментар</label>
+
+        <textarea
+          class="modal-form-textarea"
+          name="comment"
+          id="user-comment"
+          placeholder="Напишіть ваш коментар"
+        ></textarea>
+        <span class="error-message"></span>
+      </div>
+
+      <button class="send-button" type="submit">Надіслати</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="module" src="./js/order-modal.js"></script>
