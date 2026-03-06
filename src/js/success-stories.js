@@ -10,7 +10,7 @@ const load = document.querySelector('.stories-loader')
 const arrows = document.querySelector(
     '.success-stories .stories-controls'
 )
-
+    
 export function showError(error) {
   iziToast.info({
     message: error,
@@ -57,7 +57,7 @@ window.addEventListener('DOMContentLoaded', async () => {
           showError('Нажаль, історії зараз недоступні');
           hideLoader();
           const wrap = document.querySelector(
-              '.success-stories-section .swiper-wrapper'
+              '.success-stories .swiper-wrapper'
           );
           if (wrap) {
               wrap.innerHTML =
