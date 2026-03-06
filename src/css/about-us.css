@@ -1,0 +1,91 @@
+.about-section {
+  padding: 40px 0;
+}
+
+.about-title {
+  margin-bottom: 24px;
+}
+
+.about-swiper {
+  overflow: hidden;
+}
+
+.about-slide {
+  height: auto;
+}
+
+.about-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-card-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.about-card-content {
+  padding-top: 16px;
+}
+
+.about-card-title {
+  margin: 0 0 8px;
+}
+
+.about-card-text {
+  margin: 0;
+}
+
+.about-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.about-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid currentColor;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.about-nav-btn:hover,
+.about-nav-btn:focus {
+  cursor: pointer;
+}
+
+.about-nav-btn.is-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: default;
+}
+
+.about-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.about-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.about-pagination-bullet.is-active {
+  background-color: #000;
+}
