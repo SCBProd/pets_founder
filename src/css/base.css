@@ -153,3 +153,7 @@ section {
     --font-family: "IBM Plex Sans", sans-serif;
     --second-family: "Open Sans", sans-serif;
 }
+
+html {
+    scroll-behavior: smooth;
+}
