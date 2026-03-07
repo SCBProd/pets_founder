@@ -1,4 +1,9 @@
 import axios from "axios";
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
+const api = axios.create({
+  baseURL: 'https://paw-hut.b.goit.study/api',
+  });
 
 const backdrop = document.querySelector(".backdrop");
 const modalCloseBtn = document.querySelector(".modal-btn");
@@ -24,20 +29,25 @@ const commentError = commentInput
 
 let animalId = 2;
 
+
 // закриття модалки
 function closeModal() {
   backdrop.classList.remove("is-open");
   document.body.classList.remove("no-scroll");
 
   form.reset();
+
   clearError(nameInput, nameError);
   clearError(phoneInput, phoneError);
   clearError(commentInput, commentError);
+
   updateSendButtonState();
 }
 
+
 // кнопка X
 modalCloseBtn.addEventListener("click", closeModal);
+
 
 // клік поза модалкою
 backdrop.addEventListener("click", e => {
@@ -46,6 +56,7 @@ backdrop.addEventListener("click", e => {
   }
 });
 
+
 // Escape
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") {
@@ -53,11 +64,13 @@ document.addEventListener("keydown", e => {
   }
 });
 
+
 // показати помилку
-function showError(input, errorBlock, message = "Error text") {
+function showError(input, errorBlock, message = "Error") {
   input.classList.add("error");
   errorBlock.textContent = message;
 }
+
 
 // очистити помилку
 function clearError(input, errorBlock) {
@@ -65,15 +78,17 @@ function clearError(input, errorBlock) {
   errorBlock.textContent = "";
 }
 
+
 // Дефолтно кнопка заблокована
 sendBtn.disabled = true;
 sendBtn.classList.add("disabled");
 
-// Перевірка валідності всіх полів
+
+// перевірка стану кнопки
 function updateSendButtonState() {
-  const nameValid = nameInput.value.trim() !== '';
+  const nameValid = nameInput.value.trim() !== "";
   const phoneValid = /^380\d{9}$/.test(phoneInput.value.trim());
-  const commentValid = commentInput.value.trim() !== '';
+  const commentValid = commentInput.value.trim() !== "";
 
   sendBtn.disabled = !(nameValid && phoneValid && commentValid);
 
@@ -84,7 +99,8 @@ function updateSendButtonState() {
   }
 }
 
-// Валідація форми при сабміті
+
+// валідація форми
 function validateForm() {
   let valid = true;
 
@@ -96,7 +112,11 @@ function validateForm() {
   }
 
   if (!/^380\d{9}$/.test(phoneInput.value.trim())) {
-    showError(phoneInput, phoneError, "Введіть 12-значний номер телефону, починаючи з 380");
+    showError(
+      phoneInput,
+      phoneError,
+      "Введіть 12-значний номер телефону, починаючи з 380"
+    );
     valid = false;
   } else {
     clearError(phoneInput, phoneError);
@@ -110,23 +130,28 @@ function validateForm() {
   }
 
   updateSendButtonState();
+
   return valid;
 }
 
-// Валідація при вводі або blur
+
+// валідація при вводі
 [nameInput, phoneInput, commentInput].forEach(input => {
-  const errorBlock = input.closest(".modal-form-field, .modal-form-comment").querySelector(".error-message");
+  const errorBlock = input
+    .closest(".modal-form-field, .modal-form-comment")
+    .querySelector(".error-message");
 
   input.addEventListener("blur", () => {
     if (input === phoneInput) {
       if (!/^380\d{9}$/.test(input.value.trim())) {
-        showError(input, errorBlock, "Error text");
+        showError(input, errorBlock, "Невірний формат телефону");
       }
     } else if (input.value.trim() === "") {
-      showError(input, errorBlock, "Error text");
+      showError(input, errorBlock, "Поле обов'язкове");
     } else {
       clearError(input, errorBlock);
     }
+
     updateSendButtonState();
   });
 
@@ -136,38 +161,41 @@ function validateForm() {
   });
 });
 
-// Submit форми 
-// form.addEventListener("submit", async event => {
-//   event.preventDefault();
 
-//   if (!validateForm()) return;
+// SUBMIT ФОРМИ
+form.addEventListener("submit", async event => {
+  event.preventDefault();
 
-//   const payload = {
-//     name: nameInput.value.trim(),
-//     phone: phoneInput.value.trim(),
-//     comment: commentInput.value.trim(),
-//     animalId,
-//   };
+  if (!validateForm()) {
+    return;
+  }
 
-//   try {
-//     await axios.post("https://furniture-store.b.goit.study/api/orders", payload, {
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
+  const name = form.elements.name.value.trim();
+  const phone = form.elements.phone.value.trim();
+  const comment = form.elements.comment.value.trim();
 
-//     Swal.fire({
-//       icon: "success",
-//       title: "Успішно",
-//       text: "Заявку відправлено",
-//     });
+  const payload = {
+    name: name,
+    phone: phone,
+    comment: comment || undefined,
+    animalId: animalId,
+  };
 
-//     closeModal();
-//   } catch (error) {
-//     Swal.fire({
-//       icon: "error",
-//       title: "Помилка",
-//       text: "Не вдалося відправити заявку",
-//     });
-//   }
-// });
+  try {
+    await api.post("/orders", payload);
+
+    iziToast.success({
+      title: "Успішно",
+      message: "Заявку відправлено",
+      position: "topRight",
+    });
+
+    closeModal();
+  } catch (error) {
+    iziToast.error({
+      title: "Помилка",
+      message: "Не вдалося відправити заявку",
+      position: "topRight",
+    });
+  }
+});
