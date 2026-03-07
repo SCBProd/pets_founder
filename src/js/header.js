@@ -1,9 +1,9 @@
 const burgerBtn = document.querySelector('.header-burger-btn');
 const mobileMenuBackdrop = document.querySelector('.mobile-menu-backdrop');
-const mobileMenuCloseBtn = document.querySelector('.mobile-menu-close-btn');
-const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+const closeBtn = document.querySelector('.mobile-menu-close');
+const mobileLinks = document.querySelectorAll('.mobile-menu-link, .mobile-menu-btn');
 
-if (burgerBtn && mobileMenuBackdrop && mobileMenuCloseBtn) {
+if (burgerBtn && mobileMenuBackdrop && closeBtn) {
   const openMenu = () => {
     mobileMenuBackdrop.classList.add('is-open');
     document.body.classList.add('menu-open');
@@ -17,7 +17,7 @@ if (burgerBtn && mobileMenuBackdrop && mobileMenuCloseBtn) {
   };
 
   burgerBtn.addEventListener('click', openMenu);
-  mobileMenuCloseBtn.addEventListener('click', closeMenu);
+  closeBtn.addEventListener('click', closeMenu);
 
   mobileMenuBackdrop.addEventListener('click', event => {
     if (event.target === mobileMenuBackdrop) {
@@ -25,13 +25,13 @@ if (burgerBtn && mobileMenuBackdrop && mobileMenuCloseBtn) {
     }
   });
 
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && mobileMenuBackdrop.classList.contains('is-open')) {
       closeMenu();
     }
-  });
-
-  mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
   });
 }
