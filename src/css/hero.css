@@ -1,7 +1,11 @@
 
+.hero {
+
+}
+
 .hero-div {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3),
- rgba(0, 0, 0, 0.3)), url("../img/img1.jpg");
+   
+    background-image: url("../img/img1.jpg");
 
     background-position:  center;
     background-repeat: no-repeat;
@@ -12,7 +16,8 @@
 
 
 .hero-h1 {
-
+    font-family: "Open Sans", sans-serif;
+    max-width: 622px;
     margin-bottom: 24px;
     text-wrap: balance;
     font-weight: 700;
@@ -22,9 +27,11 @@
     letter-spacing: -0.01em;
 }
 .hero-p {
-    
+    font-family: "IBM Plex Sans", sans-serif;
     margin-top: 0;
     font-weight: 400;
+    max-width: 512px;
+    max-width: 420px;
     font-size: 16px;
     line-height: 1.5;
     color: #fff;
@@ -53,12 +60,18 @@
 }
 
 @media screen and (min-width: 768px) {
-
+    .hero-div {
+        background-position: initial;
+    padding: 64px 32px 235px;}
         .hero-h1 {
         font-size: 40px;}
          }
     
         @media screen and (min-width:1440px) {
+    .hero-div {
+        
+     padding: 128px 64px 396px;
+                }
 .hero-h1 {
     font-size: 56px; } 
         .hero-p {
