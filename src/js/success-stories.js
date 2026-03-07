@@ -1,76 +1,116 @@
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
-import { fetchStories } from './success-stories-api';
-import { displayStories } from './success-stories-render';
+import { getStories } from './success-stories-api';
+import { renderStories } from './success-stories-render';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-const loaderEl = document.querySelector('.loader-element');
-const controlsEl = document.querySelector('.happy-tails-section .swiper-controls');
+const loader = document.querySelector('.stories-loader');
+const controls = document.querySelector(
+  '.stories-section .stories-controls'
+);
 
-function showErrorMsg(message) {
-    iziToast.info({
-        message,
-        position: 'topRight',
-        color: '#f2aaaaff',
-        icon: false,
-        progressBar: false,
-        messageColor: 'black',
-    });
+export function showError(error) {
+  iziToast.info({
+    message: error,
+    position: 'topRight',
+    color: '#f2aaaaff',
+    icon: false,
+    progressBar: false,
+    messageColor: 'black',
+  });
 }
 
-function showLoader() { loaderEl.classList.add('loader'); }
-function hideLoader() { loaderEl.classList.remove('loader'); }
-function hideControls() { controlsEl.classList.add('visually-hidden'); }
-function showControls() { controlsEl.classList.remove('visually-hidden'); }
+function hideLoader() {
+  loader.classList.remove('loader');
+}
+
+function showLoader() {
+  loader.classList.add('loader');
+}
+
+function hideControls() {
+  controls.classList.add('visually-hidden');
+}
+
+function showControls() {
+  controls.classList.remove('visually-hidden');
+}
 
 window.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const stories = await fetchStories();
+  try {
+    let storiesList = await getStories();
 
-        if (!stories) {
-            showErrorMsg('Не вдалося завантажити історії. Спробуйте пізніше');
-            hideLoader();
-            document.querySelector('.happy-tails-section .swiper-wrapper').innerHTML =
-                '<p class="error-message">Не вдалося завантажити історії</p>';
-            return;
-        }
+    if (storiesList === null) {
+      showError('Не вдалося завантажити історії. Спробуйте пізніше');
+      hideLoader();
 
-        if (stories.length === 0) {
-            showErrorMsg('На жаль, історії зараз відсутні');
-            hideLoader();
-            document.querySelector('.happy-tails-section .swiper-wrapper').innerHTML =
-                '<p class="error-message">На жаль, історії зараз відсутні</p>';
-            return;
-        }
+      const wrapper = document.querySelector(
+        '.stories-section .stories-wrapper'
+      );
 
-        displayStories(stories);
-
-        new Swiper('.happy-tails-section .swiper-wrapper-container', {
-            direction: 'horizontal',
-            loop: false,
-            speed: 400,
-            spaceBetween: 32,
-            pagination: {
-                el: '.happy-tails-section .swiper-pagination',
-                clickable: true,
-                dynamicBullets: true,
-            },
-            navigation: {
-                nextEl: '.happy-tails-section .swiper-button-next',
-                prevEl: '.happy-tails-section .swiper-button-prev',
-            },
-            breakpoints: {
-                768: { slidesPerView: 2 },
-            },
-        });
-
-        showControls();
-        hideLoader();
-    } catch (err) {
-        showErrorMsg('Сталася помилка. Спробуйте пізніше');
-        document.querySelector('.happy-tails-section .swiper-wrapper').innerHTML =
-            '<p class="error-message">На жаль, історії зараз відсутні</p>';
-        hideLoader();
+      if (wrapper) {
+        wrapper.innerHTML =
+          '<p class="error-swiper">Не вдалося завантажити історії</p>';
+      }
+      return;
     }
+
+    if (storiesList.length === 0) {
+      showError('Нажаль, історії зараз недоступні');
+      hideLoader();
+
+      const wrapper = document.querySelector(
+        '.stories-section .stories-wrapper'
+      );
+
+      if (wrapper) {
+        wrapper.innerHTML =
+          '<p class="error-swiper">Нажаль, історії зараз недоступні</p>';
+      }
+      return;
+    }
+
+    renderStories(storiesList);
+
+    const swiper = new Swiper('.stories-section .stories-swiper', {
+      direction: 'horizontal',
+      loop: false,
+      speed: 400,
+      spaceBetween: 32,
+
+      pagination: {
+        el: '.stories-section .stories-pagination',
+        clickable: true,
+        dynamicBullets: true,
+      },
+
+      navigation: {
+        nextEl: '.stories-section .stories-button-next',
+        prevEl: '.stories-section .stories-button-prev',
+      },
+
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+        },
+      },
+    });
+
+    showControls();
+    hideLoader();
+  } catch (err) {
+    showError('Cталась помилка. Спробуйте пізніше');
+
+    const wrapper = document.querySelector(
+      '.stories-section .stories-wrapper'
+    );
+
+    if (wrapper) {
+      wrapper.innerHTML =
+        '<p class="error-swiper">Нажаль, історії зараз недоступні</p>';
+    }
+
+    hideLoader();
+  }
 });
