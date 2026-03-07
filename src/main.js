@@ -9,3 +9,5 @@ import './js/success-stories.js';
 import './js/footer.js';
 import './js/animal-details-modal.js';
 import './js/order-modal.js';
+
+import "./css/styles.css";  
