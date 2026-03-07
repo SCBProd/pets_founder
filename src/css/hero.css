@@ -58,16 +58,20 @@
 
 
 
-@media screen and (min-width: 768px) {
-    .hero-div {
-            background-image: url('../img/hero/hero-t-1x.webp');
+
+    @media screen and (min-width: 768px) {
+            .hero-div {
+                background-image: url('../img/hero/hero-t-1x.webp');
                 background-image: image-set(url('../img/hero/hero-t-1x.webp') 1x,
                         url('../img/hero/hero-t-2x.webp') 2x);
-        background-position: initial;
-    padding: 64px 32px 235px;}
-        .hero-h1 {
-        font-size: 40px;}
-         }
+                background-position: initial;
+                padding: 64px 32px 235px;
+            } 
+    
+            .hero-h1 {
+                font-size: 40px;
+            }
+        }
     
         @media screen and (min-width:1440px) {
     .hero-div {
