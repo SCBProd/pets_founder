@@ -5,7 +5,9 @@
 
 .hero-div {
    
-    background-image: url("../img/img1.jpg");
+    background-image: url('../img/hero/hero-mob-1x.webp');
+        background-image: image-set(url('../img/hero/hero-mob-1x.webp') 1x,
+                url('../img/hero/hero-mob-2x.webp') 2x);
 
     background-position:  center;
     background-repeat: no-repeat;
@@ -37,13 +39,12 @@
     color: #fff;
 }
 
-.hero-button {
+.hero-btn {
    margin-top: 32px;
     border-radius: 8px;
     border: 1px solid #88765c;
     padding: 12px 24px;
     background: #88765C;
-    transition: 0.3s;
     color: #fff;
     cursor: pointer;
     font-family: "IBM Plex Sans", sans-serif;
@@ -51,30 +52,37 @@
         font-size: 14px;
         line-height: 1.5;   
         text-decoration: none;
+        transition: background-color 250ms ease, color 250ms ease,
+                border-color 250ms ease, box-shadow 250ms ease;
 }
 
-.hero-button:hover {
-    background-color: #88765C;
-        color: #fff;
-        text-decoration: none;
-}
 
-@media screen and (min-width: 768px) {
-    .hero-div {
-        
-    padding: 64px 32px 235px;}
-        .hero-h1 {
-        font-size: 40px;}
-         }
+
+
+    @media screen and (min-width: 768px) {
+            .hero-div {
+                background-image: url('../img/hero/hero-t-1x.webp');
+                background-image: image-set(url('../img/hero/hero-t-1x.webp') 1x,
+                        url('../img/hero/hero-t-2x.webp') 2x);
+                background-position: initial;
+                padding: 64px 32px 235px;
+            } 
+    
+            .hero-h1 {
+                font-size: 40px;
+            }
+        }
     
         @media screen and (min-width:1440px) {
     .hero-div {
-        
+            background-image: url('../img/hero/hero-d-1x.webp');
+                background-image: image-set(url('../img/hero/hero-d-1x.webp') 1x,
+                        url('../img/hero/hero-d-2x.webp') 2x);
      padding: 128px 64px 396px;
                 }
 .hero-h1 {
     font-size: 56px; } 
         .hero-p {
             font-size: 18px;}
-.hero-button 
+.hero-btn
 {font-size: 16px;}    }
