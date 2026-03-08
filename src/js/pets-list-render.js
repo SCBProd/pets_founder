@@ -74,9 +74,10 @@ export function createMarkupAnimalDetails(pet) {
     behavior,
   } = pet;
   return `    <button class="modal-details-btn" type="button">
-      <svg width="14" height="14">
-        <use href="./img/close1.svg"></use>
-      </svg>
+        <svg width="14" height="14" viewBox="0 0 14 14">
+    <line x1="1" y1="1" x2="13" y2="13" stroke="currentColor" stroke-width="2"/>
+    <line x1="13" y1="1" x2="1" y2="13" stroke="currentColor" stroke-width="2"/>
+  </svg>
     </button>
 
   <div class="pet-details-content">
