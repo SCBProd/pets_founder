@@ -75,7 +75,7 @@ export function createMarkupAnimalDetails(pet) {
   } = pet;
   return `    <button class="modal-details-btn" type="button">
       <svg width="14" height="14">
-        <use href="/pets_founder/img/close1.svg"></use>
+        <use href="/pets_founder/img/close1.svg#icon-close"></use>
       </svg>
     </button>
 
