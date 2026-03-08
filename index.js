@@ -27,9 +27,7 @@ import{i as h,a as g,S as R,N as _,P as D,A as z,R as F}from"./assets/vendor-BzG
             </div>
             <button class="pet-card-btn" data-id="${$}">Дізнатись більше</button>
           </li>`}).join("")}function Y(e){const{image:t,species:s,name:a,age:r,gender:o,description:n,healthStatus:q,behavior:$}=e;return`    <button class="modal-details-btn" type="button">
-      <svg width="14" height="14">
-        <use href="/pets_founder/img/close1.svg#icon-close"></use>
-      </svg>
+        <img src="/pets_founder/img/close1.svg" width="14" height="14" alt="close" />
     </button>
 
   <div class="pet-details-content">
