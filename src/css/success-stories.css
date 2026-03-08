@@ -161,3 +161,21 @@
 .star-rating {
     height: 20px;
 }
+
+/* під мобілку */
+@media (max-width: 400px) {
+    .success-stories-slider {
+        /* обгортка каруселі/треку */
+        padding-inline: 0;
+        gap: 8px;
+        overflow-x: hidden;
+    }
+
+    .success-story-card {
+        /* сама картка фідбеку */
+        width: 100%;
+        max-width: 100%;
+        padding-inline: 16px;
+        /* якщо зараз 24+ — зменшити */
+    }
+}
