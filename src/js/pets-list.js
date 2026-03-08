@@ -2,14 +2,18 @@ import { getCategories, getPets } from './pets-list-api';
 import {
   createMarkupCategoryList,
   createMarkupPetsList,
+  createMarkupAnimalDetails,
 } from './pets-list-render';
 
 const categoryList = document.querySelector('.pets-category');
 const petsList = document.querySelector('.pets-list');
 const loadMoreBtn = document.querySelector('.add-more-cards-btn');
+const backdrop = document.querySelector('.backdrop');
+const modalContainer = document.querySelector('.modal-details');
 
 let page = 1;
 let currentCategoryId = null;
+let cachedPets = [];
 
 async function renderCategory() {
   try {
@@ -24,22 +28,30 @@ renderCategory();
 
 async function renderPetsList() {
   try {
-    //визначення параметра limit для різних екранів
     let limit = window.innerWidth >= 1440 ? 9 : 8;
 
     const petsListResponse = await getPets(page, limit, currentCategoryId);
-    const markup = createMarkupPetsList(petsListResponse.animals);
 
+    // кешуємо тварин
     if (page === 1) {
+      cachedPets = petsListResponse.animals;
       petsList.innerHTML = '';
+    } else {
+      cachedPets = [...cachedPets, ...petsListResponse.animals];
     }
+
+    // рендер поточної сторінки
+    const markup = createMarkupPetsList(petsListResponse.animals);
     petsList.insertAdjacentHTML('beforeend', markup);
 
+    // кнопка load more
     if (petsListResponse.totalItems <= page * limit) {
       loadMoreBtn.style.display = 'none';
     } else {
       loadMoreBtn.style.display = 'block';
     }
+
+    console.log(cachedPets);
   } catch (error) {
     console.log(error);
   }
@@ -62,11 +74,41 @@ categoryList.addEventListener('click', async event => {
   petsList.innerHTML = '';
 
   loadMoreBtn.style.display = 'block';
-
   await renderPetsList();
 });
 
 loadMoreBtn.addEventListener('click', async () => {
   page++;
   await renderPetsList();
+});
+
+petsList.addEventListener('click', onPetClick);
+async function onPetClick(event) {
+  const btn = event.target.closest('.pet-card-btn');
+  if (!btn) {
+    return;
+  }
+  const id = btn.dataset.id;
+
+  const pet = cachedPets.find(pet => pet._id === id);
+
+  if (!pet) return;
+  modalContainer.innerHTML = createMarkupAnimalDetails(pet);
+
+  const modalBtnClose = document.querySelector('.modal-details-btn');
+  modalBtnClose.addEventListener('click', () => {
+    backdrop.classList.remove('is-open');
+    document.body.style.overflow = '';
+  });
+
+  backdrop.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+
+backdrop.addEventListener('click', event => {
+  // закриваємо лише при кліку на фон
+  if (event.target === backdrop) {
+    backdrop.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
 });
