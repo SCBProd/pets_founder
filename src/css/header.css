@@ -31,18 +31,25 @@ body.menu-open {
     margin-left: 64px;
 }
 
+.header-nav-list,
+.mobile-menu-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
 .header-nav-list {
     display: flex;
     align-items: center;
     gap: 40px;
 }
 
-.header-nav-link {
+.header-nav-link,
+.mobile-menu-link {
     display: inline-block;
-    height: 24px;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
-    line-height: 24px;
+    line-height: 1.5;
     color: #2b2521;
     text-decoration: none;
     border-bottom: 1px solid transparent;
@@ -50,11 +57,14 @@ body.menu-open {
 }
 
 .header-nav-link:hover,
-.header-nav-link:focus-visible {
+.header-nav-link:focus-visible,
+.mobile-menu-link:hover,
+.mobile-menu-link:focus-visible {
     border-bottom: 1px solid #443b2e;
 }
 
-.header-nav-link:active {
+.header-nav-link:active,
+.mobile-menu-link:active {
     border-bottom: 1px solid #88765c;
 }
 
@@ -107,6 +117,12 @@ body.menu-open {
     cursor: pointer;
 }
 
+.header-burger-btn:focus-visible,
+.mobile-menu-close:focus-visible {
+    outline: 2px solid #88765c;
+    outline-offset: 4px;
+}
+
 .burger-line {
     width: 24px;
     height: 2px;
@@ -124,6 +140,7 @@ body.menu-open {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+    overflow-y: auto;
     transition: opacity 250ms ease, visibility 250ms ease;
 }
 
@@ -137,7 +154,7 @@ body.menu-open {
     position: relative;
     width: 100%;
     max-width: 704px;
-    height: calc(100vh - 64px);
+    height: calc(100dvh - 64px);
     margin: 0 auto;
     padding: 22px 28px 40px;
     background: #fffdf9;
@@ -148,6 +165,11 @@ body.menu-open {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+}
+
+.mobile-menu-logo {
+    display: flex;
+    align-items: center;
 }
 
 .mobile-menu-logo-img {
@@ -173,6 +195,7 @@ body.menu-open {
     width: 24px;
     height: 24px;
     fill: #2b2521;
+    transition: fill 250ms ease;
 }
 
 .mobile-menu-close:hover .mobile-menu-close-icon,
@@ -189,27 +212,6 @@ body.menu-open {
     flex-direction: column;
     align-items: center;
     gap: 28px;
-}
-
-.mobile-menu-link {
-    display: inline-block;
-    height: 24px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    color: #2b2521;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 250ms ease, color 250ms ease;
-}
-
-.mobile-menu-link:hover,
-.mobile-menu-link:focus-visible {
-    border-bottom: 1px solid #443b2e;
-}
-
-.mobile-menu-link:active {
-    border-bottom: 1px solid #88765c;
 }
 
 .mobile-menu-btn {
@@ -282,7 +284,7 @@ body.menu-open {
 
     .mobile-menu {
         max-width: none;
-        height: 100vh;
+        height: 100dvh;
         padding: 18px 20px 32px;
     }
 

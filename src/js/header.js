@@ -1,23 +1,25 @@
 const burgerBtn = document.querySelector('.header-burger-btn');
 const mobileMenuBackdrop = document.querySelector('.mobile-menu-backdrop');
-const closeBtn = document.querySelector('.mobile-menu-close');
-const mobileLinks = document.querySelectorAll('.mobile-menu-link, .mobile-menu-btn');
+const closeMenuBtn = document.querySelector('.mobile-menu-close');
+const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link, .mobile-menu-btn');
 
-if (burgerBtn && mobileMenuBackdrop && closeBtn) {
+if (burgerBtn && mobileMenuBackdrop && closeMenuBtn) {
   const openMenu = () => {
     mobileMenuBackdrop.classList.add('is-open');
     document.body.classList.add('menu-open');
     burgerBtn.setAttribute('aria-expanded', 'true');
+    mobileMenuBackdrop.setAttribute('aria-hidden', 'false');
   };
 
   const closeMenu = () => {
     mobileMenuBackdrop.classList.remove('is-open');
     document.body.classList.remove('menu-open');
     burgerBtn.setAttribute('aria-expanded', 'false');
+    mobileMenuBackdrop.setAttribute('aria-hidden', 'true');
   };
 
   burgerBtn.addEventListener('click', openMenu);
-  closeBtn.addEventListener('click', closeMenu);
+  closeMenuBtn.addEventListener('click', closeMenu);
 
   mobileMenuBackdrop.addEventListener('click', event => {
     if (event.target === mobileMenuBackdrop) {
@@ -25,7 +27,7 @@ if (burgerBtn && mobileMenuBackdrop && closeBtn) {
     }
   });
 
-  mobileLinks.forEach(link => {
+  mobileMenuLinks.forEach(link => {
     link.addEventListener('click', closeMenu);
   });
 
