@@ -97,6 +97,7 @@ loadMoreBtn.addEventListener('click', async () => {
 });
 
 petsList.addEventListener('click', onPetClick);
+
 async function onPetClick(event) {
   const btn = event.target.closest('.pet-card-btn');
   if (!btn) {
@@ -108,21 +109,18 @@ async function onPetClick(event) {
   if (!pet) return;
   modalContainer.innerHTML = createMarkupAnimalDetails(pet);
 
-  const modalBtnClose = document.querySelector('.modal-details-btn');
-  modalBtnClose.addEventListener('click', () => {
-    backdrop.classList.remove('is-open');
-    document.body.style.overflow = '';
-  });
+  openModal();
 
-  backdrop.classList.add('is-open');
-  document.body.classList.add('no-scroll');
+  const modalBtnClose = modalContainer.querySelector('.modal-details-btn');
+  modalBtnClose.addEventListener('click', () => {
+    closeModal();
+  });
 }
 
 backdrop.addEventListener('click', event => {
   // закриваємо лише при кліку на фон
   if (event.target === backdrop) {
-    backdrop.classList.remove('is-open');
-    document.body.classList.remove('no-scroll');
+    closeModal();
   }
 });
 
@@ -145,6 +143,16 @@ orderBackdrop.addEventListener('click', e => {
     document.body.classList.remove('no-scroll');
   }
 });
+
+function openModal() {
+  backdrop.classList.add('is-open');
+  document.body.classList.add('no-scroll');
+}
+
+function closeModal() {
+  backdrop.classList.remove('is-open');
+  document.body.classList.remove('no-scroll');
+}
 
 function showLoader() {
   loader.style.display = 'block';
