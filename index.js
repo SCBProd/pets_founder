@@ -31,27 +31,30 @@ import{i as h,a as g,S as R,N as D,P as _,A as z,R as F}from"./assets/vendor-BzG
         <use href="./img/close1.svg"></use>
       </svg>
     </button>
+
+  <div class="pet-details-content">
   <img class="pet-details-img" src="${t}" alt="${s}" />
-            <div class="pet-details-info">
-              <p class="pet-details-type">${s}</p>
-              <h3 class="pet-details-name">${a}</h3>
-              <ul class="pet-details-age-gender">
-                <li class="pet-details-age">${r}</li>
-                <li class="pet-details-gender">${o}</li>
-              </ul>
-                <h4 class="pet-details-heading">Опис:</h4>
-              <p class="pet-details-text">
-                ${n}
-              </p>
-                <h4 class="pet-details-heading">Здоров’я:</h4>
-              <p class="pet-details-text">
-                ${q}
-              </p>
-            <h4 class="pet-details-heading">Поведінка:</h4>
-              <p class="pet-details-text">
-                ${$}
-              </p>
-            </div>
+
+  <div class="pet-details-info">
+    <p class="pet-details-type">${s}</p>
+    <h3 class="pet-details-name">${a}</h3>
+
+    <ul class="pet-details-age-gender">
+      <li class="pet-details-age">${r}</li>
+      <li class="pet-details-gender">${o}</li>
+    </ul>
+
+    <h4 class="pet-details-heading">Опис:</h4>
+    <p class="pet-details-text">${n}</p>
+
+    <h4 class="pet-details-heading">Здоров’я:</h4>
+    <p class="pet-details-text">${q}</p>
+
+    <h4 class="pet-details-heading">Поведінка:</h4>
+    <p class="pet-details-text">${$}</p>
+  </div>
+</div>
+
             <button class="pet-details-btn">Взяти додому</button>`}const T=document.querySelector(".pets-category"),S=document.querySelector(".pets-list"),k=document.querySelector(".add-more-cards-btn"),f=document.querySelector(".backdrop"),Z=document.querySelector(".modal-details");let y=1,O=null,L=[];async function ee(){try{const e=await G();T.innerHTML=Q(e)}catch(e){console.log(e)}}ee();async function A(){try{let e=window.innerWidth>=1440?9:8;const t=await J(y,e,O);y===1?(L=t.animals,S.innerHTML=""):L=[...L,...t.animals];const s=X(t.animals);S.insertAdjacentHTML("beforeend",s),t.totalItems<=y*e?k.style.display="none":k.style.display="block"}catch(e){console.log(e)}}A();T.addEventListener("click",async e=>{if(!e.target.classList.contains("pets-category-btn"))return;O=e.target.dataset.id,y=1;let t=e.target;T.querySelector(".pets-category-btn-active").classList.remove("pets-category-btn-active"),t.classList.add("pets-category-btn-active"),S.innerHTML="",k.style.display="block",await A()});k.addEventListener("click",async()=>{y++,await A()});S.addEventListener("click",te);async function te(e){const t=e.target.closest(".pet-card-btn");if(!t)return;const s=t.dataset.id,a=L.find(o=>o._id===s);if(!a)return;Z.innerHTML=Y(a),document.querySelector(".modal-details-btn").addEventListener("click",()=>{f.classList.remove("is-open"),document.body.style.overflow=""}),f.classList.add("is-open"),document.body.style.overflow="hidden"}f.addEventListener("click",e=>{e.target===f&&(f.classList.remove("is-open"),document.body.style.overflow="")});const se=document.querySelector(".order-backdrop");document.addEventListener("click",e=>{e.target.classList.contains("pet-details-btn")&&(se.classList.add("is-open"),document.body.classList.add("no-scroll"))});const re=document.querySelector(".js-about-swiper");re&&new R(".js-about-swiper",{modules:[D,_],slidesPerView:1,spaceBetween:0,speed:600,loop:!1,grabCursor:!0,navigation:{nextEl:".about-swiper-next",prevEl:".about-swiper-prev",disabledClass:"is-disabled"},pagination:{el:".about-swiper-pagination",clickable:!0}});new z(".accordion-container",{duration:400,showMultiple:!1});const oe=g.create({baseURL:"https://paw-hut.b.goit.study/api/",params:{page:4,limit:10}});async function ae(){try{const{data:e}=await oe.get("/feedbacks");return e.feedbacks}catch{return null}}function ne(e){const t=document.querySelector(".stories-section .stories-wrapper"),s=e.map(({description:a,rate:r,author:o})=>`
         <div class="swiper-slide">
           <div class="star-rating" data-score="${r}"></div>     
