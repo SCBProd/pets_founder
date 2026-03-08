@@ -184,4 +184,10 @@
             display: block;
         }
     }
-    
+ /*add pagination styles left*/   
+.stories-section .swiper-horizontal > .stories-pagination.swiper-pagination-bullets.swiper-pagination-bullets-dynamic,
+.stories-section .stories-pagination.swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+  left: 0 !important;
+  right: auto !important;
+  transform: none !important;
+}
