@@ -1,34 +1,56 @@
 import axios from "axios";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
-const api = axios.create({
-  baseURL: 'https://paw-hut.b.goit.study/api',
-  });
 
-const backdrop = document.querySelector(".backdrop");
-const modalCloseBtn = document.querySelector(".modal-btn");
-const form = document.querySelector(".modal-form");
-
+const backdrop = document.querySelector(".order-backdrop");
+const modalCloseBtn = document.querySelector(".order-modal-btn");
+const form = document.querySelector(".order-modal-form");
+const takehomebtn = document.querySelector(".modal-pet-btn");
+const sendBtn = document.querySelector(".send-button");
 const nameInput = document.querySelector("#user-name");
 const phoneInput = document.querySelector("#user_phone");
 const commentInput = document.querySelector("#user-comment");
 
-const sendBtn = document.querySelector(".send-button");
 
 const nameError = nameInput
-  .closest(".modal-form-field")
+  .closest(".order-modal-form-field")
   .querySelector(".error-message");
 
 const phoneError = phoneInput
-  .closest(".modal-form-field")
+  .closest(".order-modal-form-field")
   .querySelector(".error-message");
 
 const commentError = commentInput
-  .closest(".modal-form-comment")
+  .closest(".order-modal-form-comment")
   .querySelector(".error-message");
 
-let animalId = 2;
+let animalId = 0;
+// вiдкриття модалки
 
+function openModal(){
+  backdrop.classList.add("is-open");
+  document.body.classList.add("no-scroll");
+}
+
+
+
+window.addEventListener('open-order-modal', event => {
+  const petId = event?.detail?.petId;
+
+  if (!petId) {
+    iziToast.error({
+      title: 'Помилка',
+      message: 'Не вдалося визначити тварину для заявки',
+      position: 'topRight',
+    });
+    return;
+  }
+
+  animalId = petId;
+  openModal();
+});
+
+takehomebtn.addEventListener("click",openModal);
 
 // закриття модалки
 function closeModal() {
@@ -138,7 +160,7 @@ function validateForm() {
 // валідація при вводі
 [nameInput, phoneInput, commentInput].forEach(input => {
   const errorBlock = input
-    .closest(".modal-form-field, .modal-form-comment")
+    .closest(".order-modal-form-field, .order-modal-form-comment")
     .querySelector(".error-message");
 
   input.addEventListener("blur", () => {
@@ -170,26 +192,29 @@ form.addEventListener("submit", async event => {
     return;
   }
 
-  const name = form.elements.name.value.trim();
-  const phone = form.elements.phone.value.trim();
-  const comment = form.elements.comment.value.trim();
+
+const { name, phone, comment } = form.elements;
+
 
   const payload = {
-    name: name,
-    phone: phone,
-    comment: comment || undefined,
+    name: name.value.trim(),
+    phone: phone.value.trim(),
+    comment: comment.value.trim(),
     animalId: animalId,
   };
 
   try {
-    await api.post("/orders", payload);
+    
+    const res = await axios.post('https://paw-hut.b.goit.study/api/orders',payload);
+
+      const orderdata = res.data
 
     iziToast.success({
       title: "Успішно",
       message: "Заявку відправлено",
       position: "topRight",
     });
-
+    
     closeModal();
   } catch (error) {
     iziToast.error({
