@@ -223,3 +223,10 @@
         font-size: 16px;
     }
 }
+
+.loader-text {
+    display: none;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 14px;
+}
