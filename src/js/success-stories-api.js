@@ -1,15 +1,19 @@
 import axios from 'axios';
+import { showError } from './success-stories';
 
-const apiClient = axios.create({
-    baseURL: 'https://paw-hut.b.goit.study/api/',
-    params: { page: 4, limit: 10 },
+const fetchStories = axios.create({
+  baseURL: 'https://paw-hut.b.goit.study/api/',
+  params: {
+    page: 4,
+    limit: 10,
+  },
 });
 
-export async function fetchStories() {
-    try {
-        const { data } = await apiClient.get('/feedbacks');
-        return data.feedbacks;
-    } catch {
-        return null;
-    }
+export async function getStories() {
+  try {
+    const { data } = await fetchStories.get('/feedbacks');
+    return data.feedbacks;
+  } catch (error) {
+    return null;
+  }
 }
