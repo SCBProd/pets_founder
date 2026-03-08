@@ -1,22 +1,16 @@
 .hero {
 
     background-color: #F7F2EA;
-
-}
-
-.hero-div {
-
     background-image: image-set(url('../img/hero/hero-mob-1x.webp') 1x,
-            url('../img/hero/hero-mob-2x.webp') 2x);
-
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-
-    padding: 64px 20px 115px;
+                url('../img/hero/hero-mob-2x.webp') 2x);
+    
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    
+        padding: 64px 20px 115px;
 
 }
-
 .hero-h1 {
 
     font-family: "Open Sans", sans-serif;
@@ -31,7 +25,7 @@
 
     margin-bottom: 24px;
        
-        text-wrap: balance;
+    text-wrap: balance;
 
 }
 
@@ -80,15 +74,7 @@
 }
 
  @media screen and (min-width:768px) {
-
-    .container {
-
-        padding-left: 32px;
-        padding-right: 32px;
-
-    }
-
-    .hero-div {
+    .hero {
 
         background-image: image-set(url('../img/hero/hero-t-1x.webp') 1x,
                 url('../img/hero/hero-t-2x.webp') 2x);
@@ -114,15 +100,7 @@
 }
 
  @media screen and (min-width:1440px) {
-
-    .container {
-
-        padding-left: 64px;
-        padding-right: 64px;
-
-    }
-
-    .hero-div {
+    .hero {
 
         background-image: image-set(url('../img/hero/hero-d-1x.webp') 1x,
                 url('../img/hero/hero-d-2x.webp') 2x);
@@ -137,7 +115,7 @@
 
         font-size: 56px;
 
-        max-width: 622px;
+        width: 622px;
 
     }
 
