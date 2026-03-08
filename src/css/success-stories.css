@@ -164,18 +164,15 @@
 
 /* під мобілку */
 @media (max-width: 400px) {
-    .success-stories-slider {
-        /* обгортка каруселі/треку */
-        padding-inline: 0;
-        gap: 8px;
-        overflow-x: hidden;
+    .swiper {
+            margin-left: 20px;
+            margin-right: 20px;
+            position: relative;
+            overflow: hidden;
+            list-style: none;
+            padding: 0;
+            z-index: 1;
+            display: block;
+        }
     }
-
-    .success-story-card {
-        /* сама картка фідбеку */
-        width: 100%;
-        max-width: 100%;
-        padding-inline: 16px;
-        /* якщо зараз 24+ — зменшити */
-    }
-}
+    
