@@ -1,88 +1,158 @@
-
 .hero {
+
+    background-color: #F7F2EA;
 
 }
 
 .hero-div {
-   
-    background-image: url('../img/hero/hero-mob-1x.webp');
-        background-image: image-set(url('../img/hero/hero-mob-1x.webp') 1x,
-                url('../img/hero/hero-mob-2x.webp') 2x);
 
-    background-position:  center;
+    background-image: image-set(url('../img/hero/hero-mob-1x.webp') 1x,
+            url('../img/hero/hero-mob-2x.webp') 2x);
+
     background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
+
     padding: 64px 20px 115px;
-} 
 
-
+}
 
 .hero-h1 {
+
     font-family: "Open Sans", sans-serif;
-    max-width: 622px;
-    margin-bottom: 24px;
-    text-wrap: balance;
     font-weight: 700;
+
     font-size: 40px;
-    color: #fff;
     line-height: 1.2;
-    letter-spacing: -0.01em;
+
+    color: #ffffff;
+
+    max-width: 335px;
+
+    margin-bottom: 24px;
+       
+        text-wrap: balance;
+
 }
+
 .hero-p {
+
     font-family: "IBM Plex Sans", sans-serif;
-    margin-top: 0;
-    font-weight: 400;
-    max-width: 512px;
-    max-width: 420px;
+
     font-size: 16px;
     line-height: 1.5;
-    color: #fff;
+
+    color: #ffffff;
+
+    max-width: 335px;
+
+    margin: 0;
+
 }
 
 .hero-btn {
-   margin-top: 32px;
-    border-radius: 8px;
-    border: 1px solid #88765c;
+
+    display: inline-block;
+
+    margin-top: 32px;
+
     padding: 12px 24px;
+
+    border-radius: 8px;
+    border: 1px solid #88765C;
+
     background: #88765C;
-    color: #fff;
-    cursor: pointer;
-    font-family: "IBM Plex Sans", sans-serif;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 1.5;   
-        text-decoration: none;
-        transition: background-color 250ms ease, color 250ms ease,
-                border-color 250ms ease, box-shadow 250ms ease;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    text-decoration: none;
+
+    transition: background 250ms;
+
 }
 
+.hero-btn:hover {
 
+    background: #6e5f49;
 
+}
 
-    @media screen and (min-width: 768px) {
-            .hero-div {
-                background-image: url('../img/hero/hero-t-1x.webp');
-                background-image: image-set(url('../img/hero/hero-t-1x.webp') 1x,
-                        url('../img/hero/hero-t-2x.webp') 2x);
-                background-position: initial;
-                padding: 64px 32px 235px;
-            } 
-    
-            .hero-h1 {
-                font-size: 40px;
-            }
-        }
-    
-        @media screen and (min-width:1440px) {
+ @media screen and (min-width:768px) {
+
+    .container {
+
+        padding-left: 32px;
+        padding-right: 32px;
+
+    }
+
     .hero-div {
-            background-image: url('../img/hero/hero-d-1x.webp');
-                background-image: image-set(url('../img/hero/hero-d-1x.webp') 1x,
-                        url('../img/hero/hero-d-2x.webp') 2x);
-     padding: 128px 64px 396px;
-                }
-.hero-h1 {
-    font-size: 56px; } 
-        .hero-p {
-            font-size: 18px;}
-.hero-btn
-{font-size: 16px;}    }
+
+        background-image: image-set(url('../img/hero/hero-t-1x.webp') 1x,
+                url('../img/hero/hero-t-2x.webp') 2x);
+
+        background-position: center right;
+
+        padding: 64px 32px 235px;
+
+    }
+
+    .hero-h1 {
+
+        max-width: 622px;
+
+    }
+
+    .hero-p {
+
+        max-width: 522px;
+
+    }
+
+}
+
+ @media screen and (min-width:1440px) {
+
+    .container {
+
+        padding-left: 64px;
+        padding-right: 64px;
+
+    }
+
+    .hero-div {
+
+        background-image: image-set(url('../img/hero/hero-d-1x.webp') 1x,
+                url('../img/hero/hero-d-2x.webp') 2x);
+
+        background-position: right center;
+
+        padding: 128px 64px 396px;
+
+    }
+
+    .hero-h1 {
+
+        font-size: 56px;
+
+        max-width: 622px;
+
+    }
+
+    .hero-p {
+
+        font-size: 18px;
+
+        max-width: 512px;
+
+    }
+
+    .hero-btn {
+
+        font-size: 16px;
+
+    }
+
+}
