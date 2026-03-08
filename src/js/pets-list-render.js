@@ -78,26 +78,29 @@ export function createMarkupAnimalDetails(pet) {
         <use href="./img/close1.svg"></use>
       </svg>
     </button>
+
+  <div class="pet-details-content">
   <img class="pet-details-img" src="${image}" alt="${species}" />
-            <div class="pet-details-info">
-              <p class="pet-details-type">${species}</p>
-              <h3 class="pet-details-name">${name}</h3>
-              <ul class="pet-details-age-gender">
-                <li class="pet-details-age">${age}</li>
-                <li class="pet-details-gender">${gender}</li>
-              </ul>
-                <h4 class="pet-details-heading">Опис:</h4>
-              <p class="pet-details-text">
-                ${description}
-              </p>
-                <h4 class="pet-details-heading">Здоров’я:</h4>
-              <p class="pet-details-text">
-                ${healthStatus}
-              </p>
-            <h4 class="pet-details-heading">Поведінка:</h4>
-              <p class="pet-details-text">
-                ${behavior}
-              </p>
-            </div>
+
+  <div class="pet-details-info">
+    <p class="pet-details-type">${species}</p>
+    <h3 class="pet-details-name">${name}</h3>
+
+    <ul class="pet-details-age-gender">
+      <li class="pet-details-age">${age}</li>
+      <li class="pet-details-gender">${gender}</li>
+    </ul>
+
+    <h4 class="pet-details-heading">Опис:</h4>
+    <p class="pet-details-text">${description}</p>
+
+    <h4 class="pet-details-heading">Здоров’я:</h4>
+    <p class="pet-details-text">${healthStatus}</p>
+
+    <h4 class="pet-details-heading">Поведінка:</h4>
+    <p class="pet-details-text">${behavior}</p>
+  </div>
+</div>
+
             <button class="pet-details-btn">Взяти додому</button>`;
 }

@@ -112,7 +112,6 @@ backdrop.addEventListener('click', event => {
 });
 
 const orderBackdrop = document.querySelector('.order-backdrop');
-
 document.addEventListener('click', e => {
   if (e.target.classList.contains('pet-details-btn')) {
     orderBackdrop.classList.add('is-open');
