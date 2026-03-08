@@ -10,6 +10,7 @@ const petsList = document.querySelector('.pets-list');
 const loadMoreBtn = document.querySelector('.add-more-cards-btn');
 const backdrop = document.querySelector('.backdrop');
 const modalContainer = document.querySelector('.modal-details');
+// const openOrderModal = document.querySelector('.pet-details-btn');
 
 let page = 1;
 let currentCategoryId = null;
@@ -107,5 +108,13 @@ backdrop.addEventListener('click', event => {
   if (event.target === backdrop) {
     backdrop.classList.remove('is-open');
     document.body.style.overflow = '';
+  }
+});
+
+const orderBackdrop = document.querySelector('.order-backdrop');
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('pet-details-btn')) {
+    orderBackdrop.classList.add('is-open');
+    document.body.classList.add('no-scroll');
   }
 });
