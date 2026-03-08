@@ -27,10 +27,10 @@ const commentError = commentInput
 let animalId = 0;
 // вiдкриття модалки
 
-function openModal(){
-  backdrop.classList.add("is-open");
-  document.body.classList.add("no-scroll");
-}
+// function openModal(){
+//   backdrop.classList.add("is-open");
+//   document.body.classList.add("no-scroll");
+// }
 
 
 
@@ -50,7 +50,7 @@ window.addEventListener('open-order-modal', event => {
   openModal();
 });
 
-takehomebtn.addEventListener("click",openModal);
+// takehomebtn.addEventListener("click",openModal);
 
 // закриття модалки
 function closeModal() {
