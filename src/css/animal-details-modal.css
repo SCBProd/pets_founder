@@ -20,6 +20,10 @@
     visibility: visible;
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
 .modal-details {
     position: relative;
     width: 335px;

@@ -1,3 +1,6 @@
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+
 import { getCategories, getPets } from './pets-list-api';
 import {
   createMarkupCategoryList,
@@ -10,7 +13,7 @@ const petsList = document.querySelector('.pets-list');
 const loadMoreBtn = document.querySelector('.add-more-cards-btn');
 const backdrop = document.querySelector('.backdrop');
 const modalContainer = document.querySelector('.modal-details');
-// const openOrderModal = document.querySelector('.pet-details-btn');
+const loader = document.querySelector('.loader-text');
 
 let page = 1;
 let currentCategoryId = null;
@@ -21,7 +24,11 @@ async function renderCategory() {
     const categories = await getCategories();
     categoryList.innerHTML = createMarkupCategoryList(categories);
   } catch (error) {
-    console.log(error);
+    iziToast.error({
+      title: 'Error',
+      message: 'Failed to load categories.',
+      position: 'topRight',
+    });
   }
 }
 renderCategory();
@@ -31,6 +38,8 @@ async function renderPetsList() {
   try {
     let limit = window.innerWidth >= 1440 ? 9 : 8;
 
+    showLoader();
+    loadMoreBtn.style.display = 'none';
     const petsListResponse = await getPets(page, limit, currentCategoryId);
 
     // кешуємо тварин
@@ -46,13 +55,19 @@ async function renderPetsList() {
     petsList.insertAdjacentHTML('beforeend', markup);
 
     // кнопка load more
-    if (petsListResponse.totalItems <= page * limit) {
-      loadMoreBtn.style.display = 'none';
-    } else {
+    if (petsListResponse.totalItems > page * limit) {
       loadMoreBtn.style.display = 'block';
+    } else {
+      loadMoreBtn.style.display = 'none';
     }
   } catch (error) {
-    console.log(error);
+    iziToast.error({
+      title: 'Error',
+      message: 'Oops! Something went wrong. Try again later.',
+      position: 'topRight',
+    });
+  } finally {
+    hideLoader();
   }
 }
 renderPetsList();
@@ -100,14 +115,14 @@ async function onPetClick(event) {
   });
 
   backdrop.classList.add('is-open');
-  document.body.style.overflow = 'hidden';
+  document.body.classList.add('no-scroll');
 }
 
 backdrop.addEventListener('click', event => {
   // закриваємо лише при кліку на фон
   if (event.target === backdrop) {
     backdrop.classList.remove('is-open');
-    document.body.style.overflow = '';
+    document.body.classList.remove('no-scroll');
   }
 });
 
@@ -116,5 +131,25 @@ document.addEventListener('click', e => {
   if (e.target.classList.contains('pet-details-btn')) {
     orderBackdrop.classList.add('is-open');
     document.body.classList.add('no-scroll');
+
+    if (backdrop.classList.contains('is-open')) {
+      backdrop.classList.remove('is-open');
+    }
   }
 });
+
+orderBackdrop.addEventListener('click', e => {
+  if (e.target === orderBackdrop) {
+    // клік по фону
+    orderBackdrop.classList.remove('is-open');
+    document.body.classList.remove('no-scroll');
+  }
+});
+
+function showLoader() {
+  loader.style.display = 'block';
+}
+
+function hideLoader() {
+  loader.style.display = 'none';
+}

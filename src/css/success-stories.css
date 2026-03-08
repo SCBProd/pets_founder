@@ -170,10 +170,18 @@
     height: 20px;
 }
 
-/* 1) Перекриваємо типове центрування dynamicBullets */
-.stories-section .swiper-horizontal > .stories-pagination.swiper-pagination-bullets.swiper-pagination-bullets-dynamic,
-.stories-section .stories-pagination.swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
-  left: 0 !important;
-  right: auto !important;
-  transform: none !important;
-}
+
+/* під мобілку */
+@media (max-width: 400px) {
+    .swiper {
+            margin-left: 20px;
+            margin-right: 20px;
+            position: relative;
+            overflow: hidden;
+            list-style: none;
+            padding: 0;
+            z-index: 1;
+            display: block;
+        }
+    }
+    
