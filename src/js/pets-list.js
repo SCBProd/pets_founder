@@ -50,8 +50,6 @@ async function renderPetsList() {
     } else {
       loadMoreBtn.style.display = 'block';
     }
-
-    console.log(cachedPets);
   } catch (error) {
     console.log(error);
   }
@@ -89,7 +87,6 @@ async function onPetClick(event) {
     return;
   }
   const id = btn.dataset.id;
-
   const pet = cachedPets.find(pet => pet._id === id);
 
   if (!pet) return;
