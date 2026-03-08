@@ -77,12 +77,13 @@ window.addEventListener('DOMContentLoaded', async () => {
       direction: 'horizontal',
       loop: false,
       speed: 400,
-      spaceBetween: 32,
+     // spaceBetween: 32,
+      spaceBetween: 0,
 
       pagination: {
         el: '.stories-section .stories-pagination',
         clickable: true,
-        dynamicBullets: true,
+       dynamicBullets: true,
       },
 
       navigation: {
@@ -93,6 +94,8 @@ window.addEventListener('DOMContentLoaded', async () => {
       breakpoints: {
         768: {
           slidesPerView: 2,
+          //add
+          spaceBetween: 32,
         },
       },
     });
