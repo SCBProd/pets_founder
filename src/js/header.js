@@ -3,6 +3,7 @@ const mobileMenuBackdrop = document.querySelector('.mobile-menu-backdrop');
 const closeBtn = document.querySelector('.mobile-menu-close');
 const mobileLinks = document.querySelectorAll('.mobile-menu-link, .mobile-menu-btn');
 
+
 if (burgerBtn && mobileMenuBackdrop && closeBtn) {
   const openMenu = () => {
     mobileMenuBackdrop.classList.add('is-open');
