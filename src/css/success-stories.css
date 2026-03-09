@@ -161,3 +161,21 @@
 .star-rating {
     height: 20px;
 }
+
+/* під мобілку */
+@media (max-width: 400px) {
+    .swiper {
+            margin-left: 20px;
+            margin-right: 20px;
+            position: relative;
+            overflow: hidden;
+            list-style: none;
+            padding: 0;
+            z-index: 1;
+            display: block;
+        }
+    }
+.stories-nav {
+  margin-right:20px
+}
+    
