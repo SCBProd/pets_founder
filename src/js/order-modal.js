@@ -9,7 +9,6 @@ const takehomebtn = document.querySelector(".modal-pet-btn");
 const sendBtn = document.querySelector(".send-button");
 const nameInput = document.querySelector("#user-name");
 const phoneInput = document.querySelector("#user_phone");
-const commentInput = document.querySelector("#user-comment");
 
 
 const nameError = nameInput
@@ -20,17 +19,13 @@ const phoneError = phoneInput
   .closest(".order-modal-form-field")
   .querySelector(".error-message");
 
-const commentError = commentInput
-  .closest(".order-modal-form-comment")
-  .querySelector(".error-message");
-
 let animalId = 0;
 // вiдкриття модалки
 
-// function openModal(){
-//   backdrop.classList.add("is-open");
-//   document.body.classList.add("no-scroll");
-// }
+function openModal(){
+  backdrop.classList.add("is-open");
+  document.body.classList.add("no-scroll");
+}
 
 
 
@@ -61,7 +56,6 @@ function closeModal() {
 
   clearError(nameInput, nameError);
   clearError(phoneInput, phoneError);
-  clearError(commentInput, commentError);
 
   updateSendButtonState();
 }
@@ -110,9 +104,9 @@ sendBtn.classList.add("disabled");
 function updateSendButtonState() {
   const nameValid = nameInput.value.trim() !== "";
   const phoneValid = /^380\d{9}$/.test(phoneInput.value.trim());
-  const commentValid = commentInput.value.trim() !== "";
 
-  sendBtn.disabled = !(nameValid && phoneValid && commentValid);
+
+  sendBtn.disabled = !(nameValid && phoneValid);
 
   if (sendBtn.disabled) {
     sendBtn.classList.add("disabled");
@@ -144,12 +138,7 @@ function validateForm() {
     clearError(phoneInput, phoneError);
   }
 
-  if (!commentInput.value.trim()) {
-    showError(commentInput, commentError, "Введіть коментар");
-    valid = false;
-  } else {
-    clearError(commentInput, commentError);
-  }
+
 
   updateSendButtonState();
 
@@ -158,10 +147,7 @@ function validateForm() {
 
 
 // валідація при вводі
-[nameInput, phoneInput, commentInput].forEach(input => {
-  const errorBlock = input
-    .closest(".order-modal-form-field, .order-modal-form-comment")
-    .querySelector(".error-message");
+[nameInput, phoneInput].forEach(input => {
 
   input.addEventListener("blur", () => {
     if (input === phoneInput) {
@@ -199,7 +185,7 @@ const { name, phone, comment } = form.elements;
   const payload = {
     name: name.value.trim(),
     phone: phone.value.trim(),
-    comment: comment.value.trim(),
+    comment: comment.value.trim() || undefined,
     animalId: animalId,
   };
 
