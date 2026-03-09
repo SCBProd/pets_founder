@@ -164,9 +164,6 @@
 
 /* під мобілку */
 @media (max-width: 400px) {
-    .stories-nav {
-        margin-right: 20px;
-    }
     .swiper {
             margin-left: 20px;
             margin-right: 20px;
