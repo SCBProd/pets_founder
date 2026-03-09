@@ -223,10 +223,15 @@
         font-size: 16px;
     }
 }
-
-.loader-text {
-    display: none;
-    text-align: center;
-    margin: 20px 0;
-    font-size: 14px;
+@media only screen and (max-width: 768px) {
+    .add-more-cards-btn {
+            font-size: 14px;
+                width: 100%;
+                max-width: 335px;
+                height: 45px;
+                border: 1px solid var(--scheme2-foreground);
+                background: var(--scheme2-foreground);
+                border-radius: 8px;
+                padding: 12px 24px;
+    }
 }
