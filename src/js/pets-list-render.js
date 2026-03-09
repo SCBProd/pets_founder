@@ -18,12 +18,15 @@ export function createMarkupCategoryList(arr) {
       `;
     })
     .join('');
+      
 }
 
 export function createMarkupPetsList(arr) {
+
+  
   return arr
     .map(
-      ({ image, species, name, categories, age, gender, shortDescription }) => {
+      ({ image, species, name, categories, age, gender, shortDescription, _id }) => {
         const categoriesMarkup = categories
           .map(
             category => `<li class="pet-card-category">${category.name}</li>`
@@ -46,7 +49,7 @@ export function createMarkupPetsList(arr) {
                 ${shortDescription}
               </p>
             </div>
-            <button class="pet-card-btn">Дізнатись більше</button>
+            <button class="pet-card-btn" data-id="${_id}">Дізнатись більше</button>
           </li>`;
       }
     )

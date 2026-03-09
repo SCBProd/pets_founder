@@ -9,6 +9,10 @@ const takehomebtn = document.querySelector(".modal-pet-btn");
 const sendBtn = document.querySelector(".send-button");
 const nameInput = document.querySelector("#user-name");
 const phoneInput = document.querySelector("#user_phone");
+let animalId = null;
+
+animalId = document.querySelector('.pet-card-btn').dataset.id;
+
 
 
 const nameError = nameInput
@@ -19,7 +23,7 @@ const phoneError = phoneInput
   .closest(".order-modal-form-field")
   .querySelector(".error-message");
 
-let animalId = 0;
+
 // вiдкриття модалки
 
 function openModal(){
@@ -29,21 +33,6 @@ function openModal(){
 
 
 
-window.addEventListener('open-order-modal', event => {
-  const petId = event?.detail?.petId;
-
-  if (!petId) {
-    iziToast.error({
-      title: 'Помилка',
-      message: 'Не вдалося визначити тварину для заявки',
-      position: 'topRight',
-    });
-    return;
-  }
-
-  animalId = petId;
-  openModal();
-});
 
 // takehomebtn.addEventListener("click",openModal);
 
@@ -148,7 +137,10 @@ function validateForm() {
 
 // валідація при вводі
 [nameInput, phoneInput].forEach(input => {
-
+    const errorBlock = input
+    .closest(".order-modal-form-field, .order-modal-form-comment")
+    .querySelector(".error-message");
+    
   input.addEventListener("blur", () => {
     if (input === phoneInput) {
       if (!/^380\d{9}$/.test(input.value.trim())) {
