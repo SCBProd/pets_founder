@@ -5,12 +5,9 @@ import "izitoast/dist/css/iziToast.min.css";
 const backdrop = document.querySelector(".order-backdrop");
 const modalCloseBtn = document.querySelector(".order-modal-btn");
 const form = document.querySelector(".order-modal-form");
-const takehomebtn = document.querySelector(".modal-pet-btn");
 const sendBtn = document.querySelector(".send-button");
 const nameInput = document.querySelector("#user-name");
 const phoneInput = document.querySelector("#user_phone");
-const commentInput = document.querySelector("#user-comment");
-
 
 const nameError = nameInput
   .closest(".order-modal-form-field")
@@ -20,39 +17,22 @@ const phoneError = phoneInput
   .closest(".order-modal-form-field")
   .querySelector(".error-message");
 
-const commentError = commentInput
-  .closest(".order-modal-form-comment")
-  .querySelector(".error-message");
+let animalId = null;
 
-let animalId = 0;
-// вiдкриття модалки
+function openModal() {
+  backdrop.classList.add("is-open");
+  document.body.classList.add("no-scroll");
+}
 
-// function openModal(){
-//   backdrop.classList.add("is-open");
-//   document.body.classList.add("no-scroll");
-// }
-
-
-
-window.addEventListener('open-order-modal', event => {
+window.addEventListener("open-order-modal", event => {
   const petId = event?.detail?.petId;
 
-  if (!petId) {
-    iziToast.error({
-      title: 'Помилка',
-      message: 'Не вдалося визначити тварину для заявки',
-      position: 'topRight',
-    });
-    return;
-  }
+  if (!petId) return;
 
   animalId = petId;
   openModal();
 });
 
-// takehomebtn.addEventListener("click",openModal);
-
-// закриття модалки
 function closeModal() {
   backdrop.classList.remove("is-open");
   document.body.classList.remove("no-scroll");
@@ -61,58 +41,44 @@ function closeModal() {
 
   clearError(nameInput, nameError);
   clearError(phoneInput, phoneError);
-  clearError(commentInput, commentError);
+
+  animalId = null;
 
   updateSendButtonState();
 }
 
-
-// кнопка X
 modalCloseBtn.addEventListener("click", closeModal);
 
-
-// клік поза модалкою
 backdrop.addEventListener("click", e => {
   if (e.target === backdrop) {
     closeModal();
   }
 });
 
-
-// Escape
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") {
     closeModal();
   }
 });
 
-
-// показати помилку
 function showError(input, errorBlock, message = "Error") {
   input.classList.add("error");
   errorBlock.textContent = message;
 }
 
-
-// очистити помилку
 function clearError(input, errorBlock) {
   input.classList.remove("error");
   errorBlock.textContent = "";
 }
 
-
-// Дефолтно кнопка заблокована
 sendBtn.disabled = true;
 sendBtn.classList.add("disabled");
 
-
-// перевірка стану кнопки
 function updateSendButtonState() {
   const nameValid = nameInput.value.trim() !== "";
   const phoneValid = /^380\d{9}$/.test(phoneInput.value.trim());
-  const commentValid = commentInput.value.trim() !== "";
 
-  sendBtn.disabled = !(nameValid && phoneValid && commentValid);
+  sendBtn.disabled = !(nameValid && phoneValid);
 
   if (sendBtn.disabled) {
     sendBtn.classList.add("disabled");
@@ -121,8 +87,6 @@ function updateSendButtonState() {
   }
 }
 
-
-// валідація форми
 function validateForm() {
   let valid = true;
 
@@ -144,21 +108,12 @@ function validateForm() {
     clearError(phoneInput, phoneError);
   }
 
-  if (!commentInput.value.trim()) {
-    showError(commentInput, commentError, "Введіть коментар");
-    valid = false;
-  } else {
-    clearError(commentInput, commentError);
-  }
-
   updateSendButtonState();
 
   return valid;
 }
 
-
-// валідація при вводі
-[nameInput, phoneInput, commentInput].forEach(input => {
+[nameInput, phoneInput].forEach(input => {
   const errorBlock = input
     .closest(".order-modal-form-field, .order-modal-form-comment")
     .querySelector(".error-message");
@@ -183,38 +138,41 @@ function validateForm() {
   });
 });
 
-
-// SUBMIT ФОРМИ
 form.addEventListener("submit", async event => {
   event.preventDefault();
 
-  if (!validateForm()) {
+  if (!validateForm()) return;
+
+  if (!animalId) {
+    iziToast.error({
+      title: "Помилка",
+      message: "Не обрано тварину",
+      position: "topRight",
+    });
     return;
   }
 
-
-const { name, phone, comment } = form.elements;
-
+  const { name, phone, comment } = form.elements;
 
   const payload = {
     name: name.value.trim(),
     phone: phone.value.trim(),
-    comment: comment.value.trim(),
+    comment: comment.value.trim() || undefined,
     animalId: animalId,
   };
 
   try {
-    
-    const res = await axios.post('https://paw-hut.b.goit.study/api/orders',payload);
-
-      const orderdata = res.data
+    await axios.post(
+      "https://paw-hut.b.goit.study/api/orders",
+      payload
+    );
 
     iziToast.success({
       title: "Успішно",
       message: "Заявку відправлено",
       position: "topRight",
     });
-    
+
     closeModal();
   } catch (error) {
     iziToast.error({
