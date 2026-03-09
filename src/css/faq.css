@@ -153,5 +153,10 @@ button {
 }
 
 @media screen and (min-width: 1440px) {
+    .FAQ-section-list {
+        width: 864px;
+        margin-left: auto;
+        margin-right: auto;
+    }
    
 }

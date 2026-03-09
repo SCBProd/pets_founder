@@ -23,14 +23,23 @@ export function createMarkupCategoryList(arr) {
 export function createMarkupPetsList(arr) {
   return arr
     .map(
-      ({ image, species, name, categories, age, gender, shortDescription }) => {
+      ({
+        image,
+        species,
+        name,
+        categories,
+        age,
+        gender,
+        shortDescription,
+        _id,
+      }) => {
         const categoriesMarkup = categories
           .map(
             category => `<li class="pet-card-category">${category.name}</li>`
           )
           .join('');
 
-        return `<li class="pet-card">
+        return `<li class="pet-card" >
             <img class="pet-card-img" src="${image}" alt="${species}" />
             <div class="pet-description">
               <p class="pet-card-type">${species}</p>
@@ -46,9 +55,52 @@ export function createMarkupPetsList(arr) {
                 ${shortDescription}
               </p>
             </div>
-            <button class="pet-card-btn">Дізнатись більше</button>
+            <button class="pet-card-btn" data-id="${_id}">Дізнатись більше</button>
           </li>`;
       }
     )
     .join('');
+}
+
+export function createMarkupAnimalDetails(pet) {
+  const {
+    image,
+    species,
+    name,
+    age,
+    gender,
+    description,
+    healthStatus,
+    behavior,
+  } = pet;
+  return `    <button class="modal-details-btn" type="button">
+      <svg width="14" height="14">
+        <use href="./img/close1.svg"></use>
+      </svg>
+    </button>
+
+  <div class="pet-details-content">
+  <img class="pet-details-img" src="${image}" alt="${species}" />
+
+  <div class="pet-details-info">
+    <p class="pet-details-type">${species}</p>
+    <h3 class="pet-details-name">${name}</h3>
+
+    <ul class="pet-details-age-gender">
+      <li class="pet-details-age">${age}</li>
+      <li class="pet-details-gender">${gender}</li>
+    </ul>
+
+    <h4 class="pet-details-heading">Опис:</h4>
+    <p class="pet-details-text">${description}</p>
+
+    <h4 class="pet-details-heading">Здоров’я:</h4>
+    <p class="pet-details-text">${healthStatus}</p>
+
+    <h4 class="pet-details-heading">Поведінка:</h4>
+    <p class="pet-details-text">${behavior}</p>
+  </div>
+</div>
+
+            <button class="pet-details-btn">Взяти додому</button>`;
 }
