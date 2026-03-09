@@ -64,9 +64,9 @@
     position: relative;
     text-align: start;
     justify-content: flex-start;
-    left: auto;
+    left: auto; !important
     top: 4px;
-    transform: none;
+    transform: none; !important
     --swiper-theme-color: var(#02060A);
 }
 
