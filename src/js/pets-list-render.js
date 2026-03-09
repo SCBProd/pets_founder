@@ -18,9 +18,12 @@ export function createMarkupCategoryList(arr) {
       `;
     })
     .join('');
+      
 }
 
 export function createMarkupPetsList(arr) {
+
+  
   return arr
     .map(
       ({

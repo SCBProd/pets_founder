@@ -9,6 +9,7 @@ const sendBtn = document.querySelector(".send-button");
 const nameInput = document.querySelector("#user-name");
 const phoneInput = document.querySelector("#user_phone");
 
+
 const nameError = nameInput
   .closest(".order-modal-form-field")
   .querySelector(".error-message");
@@ -17,21 +18,12 @@ const phoneError = phoneInput
   .closest(".order-modal-form-field")
   .querySelector(".error-message");
 
-let animalId = null;
 
+// вiдкриття модалки
 function openModal() {
   backdrop.classList.add("is-open");
   document.body.classList.add("no-scroll");
 }
-
-window.addEventListener("open-order-modal", event => {
-  const petId = event?.detail?.petId;
-
-  if (!petId) return;
-
-  animalId = petId;
-  openModal();
-});
 
 function closeModal() {
   backdrop.classList.remove("is-open");
@@ -42,7 +34,6 @@ function closeModal() {
   clearError(nameInput, nameError);
   clearError(phoneInput, phoneError);
 
-  animalId = null;
 
   updateSendButtonState();
 }
@@ -114,10 +105,10 @@ function validateForm() {
 }
 
 [nameInput, phoneInput].forEach(input => {
-  const errorBlock = input
+    const errorBlock = input
     .closest(".order-modal-form-field, .order-modal-form-comment")
     .querySelector(".error-message");
-
+    
   input.addEventListener("blur", () => {
     if (input === phoneInput) {
       if (!/^380\d{9}$/.test(input.value.trim())) {
@@ -140,6 +131,8 @@ function validateForm() {
 
 form.addEventListener("submit", async event => {
   event.preventDefault();
+   let animalId = null;
+  animalId = document.querySelector('.pet-card-btn').dataset.id;
 
   if (!validateForm()) return;
 
@@ -151,6 +144,7 @@ form.addEventListener("submit", async event => {
     });
     return;
   }
+ 
 
   const { name, phone, comment } = form.elements;
 
